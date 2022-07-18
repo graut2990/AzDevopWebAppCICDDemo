@@ -3,6 +3,7 @@
 # Only needed for .NET Core .csproj projects.
 # .NET Framework doesn't need this as it has already a project GUID.
 
+
 $paths = Get-ChildItem -include *.csproj -Recurse
 foreach($pathobject in $paths) 
 {
