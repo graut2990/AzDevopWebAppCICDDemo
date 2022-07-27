@@ -14,21 +14,25 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'Restore Web App Package'
   inputs:
     command: 'restore'
     projects: '**/AzDevopWebAppCICDDemo.csproj'
     feedsToUse: 'select'
 - task: DotNetCoreCLI@2
+  displayName: 'Build Web App'
   inputs:
     command: 'build'
     projects: '**/AzDevopWebAppCICDDemo.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 - task: DotNetCoreCLI@2
+  displayName: 'Publish Web App'
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact to drop folder'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
